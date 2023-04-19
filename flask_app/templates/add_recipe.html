@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new recipe</title>
+</head>
+<body>
+    <h1>Hello {{suser.first_name}} {{suser.last_name}} </h1>
+    <a href="/clear">Logout</a>
+    <a href="/dashboard">view recipes</a>
+    {% for messages in get_flashed_messages() %}
+        <p>{{messages}}</p>
+    {% endfor %}
+
+    <form action="/create_recipe" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <br>
+        <label for="instructions">Instructions:</label>
+        <textarea name="instructions" id="instructions" cols="30" rows="10"></textarea>
+        <br>
+        <label for="created_at">Date created:</label>
+        <input type="date" name="created_at" id="created_at">
+        <br>
+        <label for="under30">Under 30 min?</label>
+        <label for="yes">Yes</label>
+        <input type="radio" checked name="under30" id="yes" value="yes">
+        <label for="no">No</label>
+        <input type="radio" name="under30" id="no" value="no">
+        <input type="hidden" name="user_id" value="{{suser.id}}">
+        <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>
